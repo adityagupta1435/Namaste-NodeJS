@@ -1,1 +1,5 @@
-console.log("Starting a new Project");
+const express = require("express");
+
+const app = express();
+
+app.listen(3000);

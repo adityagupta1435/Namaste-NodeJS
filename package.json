@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/adityagupta1435/Namaste-NodeJS/issues"
   },
-  "homepage": "https://github.com/adityagupta1435/Namaste-NodeJS#readme"
+  "homepage": "https://github.com/adityagupta1435/Namaste-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
 }
