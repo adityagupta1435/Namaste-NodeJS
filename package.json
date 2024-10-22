@@ -1,0 +1,23 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "tinders for dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityagupta1435/Namaste-NodeJS.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Aditya Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityagupta1435/Namaste-NodeJS/issues"
+  },
+  "homepage": "https://github.com/adityagupta1435/Namaste-NodeJS#readme"
+}
