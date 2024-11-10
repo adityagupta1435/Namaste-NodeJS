@@ -14,7 +14,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.send("User Added successfully!");
   } catch (err) {
-    res.status(400).send("Error saving the user:", +err.message);
+    res.status(400).send("Error saving the user:" + err.message);
   }
 });
 
@@ -55,18 +55,51 @@ app.get("/feed", async (req, res) => {
 });
 
 //Patch API
-app.patch("/user", async (req, res) => {
-  const userId = req.body.userId;
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params?.userId;
   const data = req.body;
-  console.log(userId);
   try {
-    const user = await User.findByIdAndUpdate(userId, data);
-    console.log(user);
+    const ALLOWED_UPDATES = [
+      "photoUrl",
+      "about",
+      "password",
+      "skills",
+      "gender",
+      "age",
+    ];
+
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k)
+    );
+    if (!isUpdateAllowed) {
+      throw new Error("Update not allowed!");
+    }
+
+    if (data?.skills.length > 10) {
+      throw new Error("Skills cannot be more than 10!");
+    }
+    const user = await User.findByIdAndUpdate(userId, data, {
+      runValidators: true,
+    });
+
     res.send("User updated Successfully!!");
   } catch (err) {
-    res.status(400).send("Something went wrong!");
+    console.log(err);
+    res.status(400).send("Updation failed!");
   }
 });
+
+//Find by email and then update
+// app.patch("/user", async (req, res) => {
+//   const emailId = req.body.emailId;
+//   const data = req.body;
+//   try {
+//     const user = await User.findOneAndUpdate({ emailId: emailId }, data);
+//     res.send("User updated Successfully!!");
+//   } catch (err) {
+//     res.status(400).send("Something went wrong!");
+//   }
+// });
 
 connectDB()
   .then(() => {
