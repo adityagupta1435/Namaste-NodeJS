@@ -16,6 +16,34 @@ const validateSignUpData = function (req) {
   }
 };
 
+const validateEditProfileData = function (req) {
+  const alloweEditFields = [
+    "firstName",
+    "lastName",
+    "age",
+    "photoUrl",
+    "gender",
+    "about",
+    "skills",
+  ];
+
+  const { age, skills } = req.body;
+
+  if (age > 99 || age < 3) {
+    throw new Error("Invalid age!");
+  }
+
+  if (skills.length > 10) {
+    throw new Error("Exceeds skills length");
+  }
+
+  const isEditAllowed = Object.keys(req.body).every((field) =>
+    alloweEditFields.includes(field)
+  );
+
+  return isEditAllowed;
+};
 module.exports = {
   validateSignUpData,
+  validateEditProfileData,
 };
