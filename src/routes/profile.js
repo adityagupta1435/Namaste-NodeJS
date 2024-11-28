@@ -22,7 +22,7 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
     }
 
     const loggedInuser = req.user;
-    console.log(loggedInuser);
+
     Object.keys(req.body).forEach((key) => {
       loggedInuser[key] = req.body[key];
     });

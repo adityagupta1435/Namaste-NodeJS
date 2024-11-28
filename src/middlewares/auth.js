@@ -18,7 +18,7 @@ const userAuth = async (req, res, next) => {
       throw new Error("User not found");
     }
 
-    //We will do this so that we get to know logge in user
+    //We will do this so that we get to know logged in user
     req.user = user;
     next();
   } catch (err) {
